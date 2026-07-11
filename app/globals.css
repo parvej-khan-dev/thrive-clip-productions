@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0908;
+  --foreground: #f4efe7;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #0a0908;
+}
+
+body {
+  margin: 0;
+  background: #0a0908;
+  color: #f4efe7;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(244, 239, 231, 0.32);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+@keyframes tcFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes tcFloatSlow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-26px) rotate(4deg);
+  }
+}
+
+@keyframes tcMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tcPulseGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes tcLoaderBar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes tcRise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tc-lightbox-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .tc-float {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  [data-desktop-nav] {
+    display: none !important;
+  }
+  [data-mobile-toggle] {
+    display: flex !important;
+  }
+}
+
+.tc-cta-primary {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.tc-cta-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 55px rgba(224, 166, 90, 0.45);
+}
+
+.tc-cta-secondary {
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.tc-cta-secondary:hover {
+  background: rgba(244, 239, 231, 0.09);
+  border-color: rgba(244, 239, 231, 0.3);
+  transform: translateY(-3px);
+}
+
+.tc-outline-btn {
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.tc-outline-btn:hover {
+  background: rgba(244, 239, 231, 0.09);
+  border-color: rgba(244, 239, 231, 0.3);
+}
+
+.tc-service-card {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, background 0.4s ease;
+}
+.tc-service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(224, 166, 90, 0.4);
+  background: linear-gradient(180deg, rgba(224, 166, 90, 0.09), rgba(244, 239, 231, 0.02));
+}
+
+.tc-service-start {
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.tc-service-start:hover {
+  background: linear-gradient(135deg, #e0a65a, #f0d3a0);
+  color: #0a0908;
+  border-color: transparent;
+}
+
+@media (max-width: 800px) {
+  .tc-service-detail {
+    grid-template-columns: 1fr !important;
+  }
+  .tc-service-detail .tc-service-start {
+    justify-self: start !important;
+  }
+}
+
+.tc-portfolio-card {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
+}
+.tc-portfolio-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(224, 166, 90, 0.45);
+}
+
+.social-fab {
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.social-fab:hover {
+  transform: translateY(-3px);
+  border-color: rgba(224, 166, 90, 0.5);
+  background: rgba(224, 166, 90, 0.14);
+}
+
+.footer-link {
+  transition: color 0.25s ease;
+}
+.footer-link:hover {
+  color: #e0a65a;
+}
+
+.tc-submit-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tc-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 44px rgba(224, 166, 90, 0.45);
+}

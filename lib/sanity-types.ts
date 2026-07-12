@@ -121,7 +121,7 @@ export interface TeamMember {
   linkedIn?: string;
 }
 
-export type SocialPlatform = "Instagram" | "YouTube" | "LinkedIn";
+export type SocialPlatform = "Instagram" | "WhatsApp" | "LinkedIn";
 
 export interface SocialLink {
   platform: SocialPlatform;

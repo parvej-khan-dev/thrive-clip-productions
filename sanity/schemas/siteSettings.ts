@@ -43,7 +43,7 @@ export const siteSettings = defineType({
               options: {
                 list: [
                   { title: "Instagram", value: "Instagram" },
-                  { title: "YouTube", value: "YouTube" },
+                  { title: "WhatsApp", value: "WhatsApp" },
                   { title: "LinkedIn", value: "LinkedIn" },
                 ],
               },

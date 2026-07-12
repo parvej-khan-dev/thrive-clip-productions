@@ -143,7 +143,14 @@ export default async function ProjectPage({ params }: PageProps) {
           </p>
         )}
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 32 }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 12,
+            marginBottom: 32,
+          }}
+        >
           {project.liveUrl && (
             <a
               href={project.liveUrl}

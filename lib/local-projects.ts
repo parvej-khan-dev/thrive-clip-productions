@@ -54,6 +54,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "model-feature" },
     description:
       "Polished model feature spot with clean grading and rhythm cut for premium brand placement.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/model+video+1k.mp4",
     techStack: ["Commercial Ads", "Reels"],
     featured: true,
     order: 3,
@@ -66,6 +68,8 @@ export const LOCAL_PROJECTS: Project[] = [
     description:
       "Punchy 30-second commercial cut built to hook fast and convert on paid feeds.",
     techStack: ["Commercial Ads", "Short Form"],
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/30+sec+1st+final.mp4",
     featured: true,
     order: 4,
   },
@@ -77,6 +81,8 @@ export const LOCAL_PROJECTS: Project[] = [
     description:
       "Festive Raksha Bandhan campaign piece crafted for emotional pull and social sharing.",
     techStack: ["Social Campaigns", "Reels"],
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/Raksha+Bandhan+final.mp4",
     featured: true,
     order: 5,
   },
@@ -88,6 +94,8 @@ export const LOCAL_PROJECTS: Project[] = [
     description:
       "Event invitation film for a certification ceremony — clean motion and confident pacing.",
     techStack: ["Event Films", "Social Campaigns"],
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/Certification+Invitation.mp4",
     featured: true,
     order: 6,
   },
@@ -98,6 +106,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "june-seminar" },
     description:
       "Seminar highlight film capturing the energy of a live event in a shareable recap.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/15+june+seminar++3+final.mp4",
     techStack: ["Event Films", "Short Form"],
     order: 7,
   },
@@ -108,6 +118,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "dr-mahendra-kumar-sharma" },
     description:
       "Personal-brand talking-head edit with captions and B-roll built for authority.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/Dr.+Mahendra+Kumar+Sharma.mp4",
     techStack: ["Personal Brand", "Short Form"],
     order: 8,
   },
@@ -118,6 +130,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "sital-ji" },
     description:
       "Talking-head personal-brand piece cut for clarity, retention, and a strong message.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/sital+ji+final.mp4",
     techStack: ["Personal Brand", "Short Form"],
     order: 9,
   },
@@ -128,6 +142,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "leadership-is-bleeding" },
     description:
       "Thought-leadership short-form video with a hook-first structure for reach and retention.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/Leadership+is+bleeding.mp4",
     techStack: ["Short Form", "Reels"],
     order: 10,
   },
@@ -139,6 +155,8 @@ export const LOCAL_PROJECTS: Project[] = [
     description:
       "Narrative short-form edit that turns a business idea into a scroll-stopping story.",
     techStack: ["Short Form", "Reels"],
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/The+Innovation+Drain.mp4",
     order: 11,
   },
   {
@@ -148,6 +166,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "what-if-leadership" },
     description:
       "Concept-driven leadership reel engineered around a single strong hook.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/What+if+leadership.mp4",
     techStack: ["Short Form", "Reels"],
     order: 12,
   },
@@ -158,6 +178,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "he-and-she-1" },
     description:
       "Relationship-themed short-form piece with tight pacing built for social feeds.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/he+and+she+1_1.mp4",
     techStack: ["Short Form", "Reels"],
     order: 13,
   },
@@ -168,6 +190,8 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "he-and-she-2" },
     description:
       "Follow-up cut in the He & She series — same voice, fresh hook.",
+    liveUrl:
+      "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/he+and+she+2.mp4",
     techStack: ["Short Form", "Reels"],
     order: 14,
   },
@@ -208,12 +232,17 @@ export const LOCAL_PROJECTS: Project[] = [
     slug: { _type: "slug", current: "content-reel-04" },
     description:
       "Short-form social edit built for consistent posting and audience growth.",
+    liveUrl: "https://tcp-portfolio.s3.ap-south-1.amazonaws.com/new+one.mp4",
     techStack: ["Short Form", "Reels"],
     order: 18,
   },
 ];
 
-export function getLocalProjectVideoUrl(slug: string | undefined): string | null {
+const exportToSanity = LOCAL_PROJECTS.filter((project) => project.liveUrl);
+
+export function getLocalProjectVideoUrl(
+  slug: string | undefined,
+): string | null {
   if (!slug) {
     return null;
   }
@@ -221,5 +250,7 @@ export function getLocalProjectVideoUrl(slug: string | undefined): string | null
 }
 
 export function getLocalProjectBySlug(slug: string): Project | null {
-  return LOCAL_PROJECTS.find((project) => project.slug.current === slug) ?? null;
+  return (
+    LOCAL_PROJECTS.find((project) => project.slug.current === slug) ?? null
+  );
 }

@@ -357,7 +357,7 @@ export const BOOKING_PERKS = [
 // and components/home/booking.tsx. The former hardcoded BOOKING_DAYS/BOOKING_SLOTS
 // mock data was removed when the live integration landed.
 
-export type SocialName = "Instagram" | "YouTube" | "LinkedIn";
+export type SocialName = "Instagram" | "WhatsApp" | "LinkedIn";
 
 export interface Social {
   name: SocialName;
@@ -365,9 +365,12 @@ export interface Social {
 }
 
 export const SOCIALS: Social[] = [
-  { name: "Instagram", href: "#" },
-  { name: "YouTube", href: "#" },
-  { name: "LinkedIn", href: "#" },
+  { name: "Instagram", href: "https://www.instagram.com/thrive_clip_productions/" },
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/918239081636?text=Hi%2C%20I%27m%20interested%20in%20TCP%20services.%20Can%20you%20share%20more%20details%3F",
+  },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/thrive-clip-productions" },
 ];
 
 export const CONTACT = {

@@ -114,6 +114,17 @@ textarea:focus {
   }
 }
 
+/* Narrow phones: the nav CTA pill competes with the logo + hamburger for
+   space and wraps. Hide it here — the mobile menu carries a Book a Call CTA. */
+@media (max-width: 560px) {
+  .tc-nav-cta {
+    display: none !important;
+  }
+  .tc-nav-logo img {
+    height: 26px !important;
+  }
+}
+
 .tc-cta-primary {
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
 }

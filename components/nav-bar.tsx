@@ -27,31 +27,6 @@ export default function NavBar({ current }: { current: NavKey | "blog" }) {
     // stacked over fixed layers). Nudging a style forces a full repaint.
     let timeout: ReturnType<typeof setTimeout>;
     const forceRepaint = () => {
-      // #region agent log
-      fetch(
-        "http://127.0.0.1:7717/ingest/d94b2140-3ee8-4a9e-b93f-176ed3646a97",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Debug-Session-Id": "d48b32",
-          },
-          body: JSON.stringify({
-            sessionId: "d48b32",
-            runId: "pre-fix",
-            hypothesisId: "D",
-            location: "nav-bar.tsx:forceRepaint",
-            message: "forceRepaint opacity nudge fired",
-            data: {
-              bodyOpacityBefore: getComputedStyle(document.body).opacity,
-              innerW: window.innerWidth,
-              innerH: window.innerHeight,
-            },
-            timestamp: Date.now(),
-          }),
-        },
-      ).catch(() => {});
-      // #endregion
       document.body.style.opacity = "0.999";
       requestAnimationFrame(() => {
         document.body.style.opacity = "";
@@ -111,11 +86,13 @@ export default function NavBar({ current }: { current: NavKey | "blog" }) {
         <Link
           href="/"
           data-cursor="lg"
+          className="tc-nav-logo"
           style={{
             display: "flex",
             alignItems: "center",
             textDecoration: "none",
             color: "#F4EFE7",
+            minWidth: 0,
           }}
           aria-label="Thrive Clip Production — home"
         >
@@ -150,6 +127,7 @@ export default function NavBar({ current }: { current: NavKey | "blog" }) {
           <Link
             href={BOOK_HREF}
             data-cursor="lg"
+            className="tc-nav-cta"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -162,6 +140,7 @@ export default function NavBar({ current }: { current: NavKey | "blog" }) {
               fontWeight: 600,
               textDecoration: "none",
               letterSpacing: ".01em",
+              whiteSpace: "nowrap",
               boxShadow: "0 8px 30px rgba(224,166,90,.28)",
               transition:
                 "transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease",
@@ -239,6 +218,29 @@ export default function NavBar({ current }: { current: NavKey | "blog" }) {
             {link.label}
           </Link>
         ))}
+        <Link
+          href={BOOK_HREF}
+          onClick={() => setMenuOpen(false)}
+          data-cursor="lg"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            marginTop: 12,
+            padding: "15px 30px",
+            borderRadius: 100,
+            background: "linear-gradient(135deg,#E0A65A,#F0D3A0)",
+            color: "#0A0908",
+            fontSize: 15,
+            fontWeight: 600,
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+            opacity: 0,
+            animation: `tcRise .5s ${NAV_LINKS.length * 40}ms both`,
+          }}
+        >
+          Book a Call<span style={{ fontSize: 16 }}>→</span>
+        </Link>
       </div>
     </nav>
   );

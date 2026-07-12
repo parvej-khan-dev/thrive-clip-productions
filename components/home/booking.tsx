@@ -24,6 +24,11 @@ function formatDayTab(dateKey: string) {
   };
 }
 
+function formatDayOption(dateKey: string) {
+  const d = new Date(`${dateKey}T12:00:00`);
+  return d.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+}
+
 function formatSlot(iso: string, timeZone: string | undefined): string {
   return new Date(iso).toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -45,6 +50,39 @@ const inputStyle: React.CSSProperties = {
   background: "rgba(244,239,231,.03)",
   border: "1px solid rgba(244,239,231,.12)",
   outline: "none",
+};
+
+const selectStyle: React.CSSProperties = {
+  ...inputStyle,
+  appearance: "none",
+  WebkitAppearance: "none",
+  MozAppearance: "none",
+  paddingRight: 38,
+  cursor: "pointer",
+};
+
+const optionStyle: React.CSSProperties = {
+  background: "#141210",
+  color: "#F4EFE7",
+};
+
+const selectLabelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 11.5,
+  letterSpacing: ".06em",
+  textTransform: "uppercase",
+  color: "rgba(244,239,231,.5)",
+  marginBottom: 7,
+};
+
+const chevronStyle: React.CSSProperties = {
+  position: "absolute",
+  right: 14,
+  top: "50%",
+  transform: "translateY(-50%)",
+  pointerEvents: "none",
+  color: "rgba(244,239,231,.5)",
+  fontSize: 12,
 };
 
 export default function Booking() {
@@ -274,62 +312,57 @@ export default function Booking() {
 
                 {!loading && !loadError && days.length > 0 && (
                   <>
-                    <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-                      {days.map((key) => {
-                        const tab = formatDayTab(key);
-                        const active = dayKey === key;
-                        return (
-                          <button
-                            key={key}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                      <div>
+                        <label htmlFor="booking-date" style={selectLabelStyle}>
+                          Date
+                        </label>
+                        <div style={{ position: "relative" }}>
+                          <select
+                            id="booking-date"
                             data-cursor="lg"
-                            onClick={() => {
-                              setDayKey(key);
+                            value={dayKey ?? ""}
+                            onChange={(e) => {
+                              setDayKey(e.target.value || null);
                               setSelectedStart(null);
                             }}
-                            style={{
-                              flex: 1,
-                              padding: "12px 6px",
-                              borderRadius: 13,
-                              textAlign: "center",
-                              fontFamily: "inherit",
-                              cursor: "pointer",
-                              transition: "all .25s ease",
-                              border: `1px solid ${active ? "rgba(224,166,90,.55)" : "rgba(244,239,231,.12)"}`,
-                              background: active ? "rgba(224,166,90,.15)" : "rgba(244,239,231,.03)",
-                              color: active ? "#F4EFE7" : "rgba(244,239,231,.6)",
-                            }}
+                            style={selectStyle}
                           >
-                            <span style={{ display: "block", fontSize: 11, opacity: 0.6 }}>{tab.dow}</span>
-                            <span style={{ display: "block", fontSize: 17, fontFamily: "var(--font-display)" }}>{tab.date}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                            {days.map((key) => (
+                              <option key={key} value={key} style={optionStyle}>
+                                {formatDayOption(key)}
+                              </option>
+                            ))}
+                          </select>
+                          <span style={chevronStyle}>▾</span>
+                        </div>
+                      </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
-                      {daySlots.map((iso) => {
-                        const active = selectedStart === iso;
-                        return (
-                          <button
-                            key={iso}
+                      <div>
+                        <label htmlFor="booking-time" style={selectLabelStyle}>
+                          Time
+                        </label>
+                        <div style={{ position: "relative" }}>
+                          <select
+                            id="booking-time"
                             data-cursor="lg"
-                            onClick={() => setSelectedStart(iso)}
-                            style={{
-                              padding: "11px 6px",
-                              borderRadius: 11,
-                              fontSize: 13,
-                              fontFamily: "inherit",
-                              cursor: "pointer",
-                              transition: "all .25s ease",
-                              border: `1px solid ${active ? "rgba(224,166,90,.55)" : "rgba(244,239,231,.12)"}`,
-                              background: active ? "rgba(224,166,90,.15)" : "rgba(244,239,231,.03)",
-                              color: active ? "#F4EFE7" : "rgba(244,239,231,.7)",
-                            }}
+                            value={selectedStart ?? ""}
+                            onChange={(e) => setSelectedStart(e.target.value || null)}
+                            disabled={daySlots.length === 0}
+                            style={{ ...selectStyle, opacity: daySlots.length === 0 ? 0.5 : 1 }}
                           >
-                            {formatSlot(iso, timeZone)}
-                          </button>
-                        );
-                      })}
+                            <option value="" style={optionStyle}>
+                              {daySlots.length === 0 ? "No times available" : "Select a time…"}
+                            </option>
+                            {daySlots.map((iso) => (
+                              <option key={iso} value={iso} style={optionStyle}>
+                                {formatSlot(iso, timeZone)}
+                              </option>
+                            ))}
+                          </select>
+                          <span style={chevronStyle}>▾</span>
+                        </div>
+                      </div>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 18 }}>

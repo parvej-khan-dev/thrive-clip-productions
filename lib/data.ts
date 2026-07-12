@@ -377,4 +377,5 @@ export const CONTACT = {
   phones: ["+91 82390 81636", "+91 97839 46464"],
   email: "thriveclipproductions@gmail.com",
   address: ["Jhotwara, Jaipur,", "Rajasthan 302012"],
+  mapUrl: "https://maps.app.goo.gl/YN2HaqugW9mpBzAj7",
 };

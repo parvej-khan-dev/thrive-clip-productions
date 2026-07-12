@@ -105,15 +105,21 @@ export default function Footer({ socials }: { socials: Social[] }) {
           >
             Book Strategy Call →
           </Link>
-          <div
+          <a
+            href={`mailto:${CONTACT.email}`}
+            data-cursor="lg"
+            className="footer-link"
             style={{
+              display: "inline-block",
               marginTop: 18,
               fontSize: 14,
               color: "rgba(244,239,231,.5)",
+              textDecoration: "none",
+              transition: "color .25s ease",
             }}
           >
             {CONTACT.email}
-          </div>
+          </a>
           <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
             {socials.map((s) => (
               <a
@@ -158,7 +164,16 @@ export default function Footer({ socials }: { socials: Social[] }) {
         }}
       >
         <span>© 2026 ThriveClip Productions. All rights reserved.</span>
-        <span>{CONTACT.address.join(" ")}</span>
+        <a
+          href={CONTACT.mapUrl}
+          data-cursor="lg"
+          className="footer-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "inherit", textDecoration: "none", transition: "color .25s ease" }}
+        >
+          {CONTACT.address.join(" ")}
+        </a>
       </div>
     </footer>
   );

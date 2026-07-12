@@ -80,26 +80,43 @@ export default function ContactForm() {
                 Call us
               </div>
               {CONTACT.phones.map((p) => (
-                <div key={p} style={{ fontSize: 17, color: "#F4EFE7" }}>
+                <a
+                  key={p}
+                  href={`tel:${p.replace(/\s+/g, "")}`}
+                  data-cursor="lg"
+                  style={{ display: "block", fontSize: 17, color: "#F4EFE7", textDecoration: "none" }}
+                >
                   {p}
-                </div>
+                </a>
               ))}
             </div>
             <div>
               <div style={{ fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: "rgba(244,239,231,.45)", marginBottom: 8 }}>
                 Email
               </div>
-              <div style={{ fontSize: 17, color: "#F4EFE7" }}>{CONTACT.email}</div>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                data-cursor="lg"
+                style={{ fontSize: 17, color: "#F4EFE7", textDecoration: "none" }}
+              >
+                {CONTACT.email}
+              </a>
             </div>
             <div>
               <div style={{ fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: "rgba(244,239,231,.45)", marginBottom: 8 }}>
                 Studio
               </div>
-              <div style={{ fontSize: 17, color: "#F4EFE7", lineHeight: 1.5 }}>
+              <a
+                href={CONTACT.mapUrl}
+                data-cursor="lg"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 17, color: "#F4EFE7", lineHeight: 1.5, textDecoration: "none" }}
+              >
                 {CONTACT.address[0]}
                 <br />
                 {CONTACT.address[1]}
-              </div>
+              </a>
             </div>
           </div>
         </Reveal>
